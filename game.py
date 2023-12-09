@@ -20,8 +20,9 @@ class Game:
         return start_deck
 
     def get_card(self, take_from_stack=True):
-        if take_from_stack == False:
+        if not take_from_stack:
             last_thrown = self.cards_thrown[-1]
+            self.cards_thrown[:] = self.cards[:-1]
             return last_thrown
         else:
             card = self.cards[-1]
