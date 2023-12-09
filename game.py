@@ -6,7 +6,7 @@ class Game:
 
     def __init__(self):
         self.cards = self.initialize_deck()
-        self.lucky_card = self.get_card(zero_possible=False)
+        self.lucky_card = self.valid_lucky_card()
         self.cards_thrown = []
 
     @staticmethod
@@ -27,7 +27,7 @@ class Game:
 
     def get_from_thrown(self):
         if len(self.cards_thrown) == 0:
-            return self.get_from_stack()
+            raise Exception("cannot get card from thrown")
 
         else:
             last_thrown = self.cards_thrown[-1]
@@ -43,9 +43,9 @@ class Game:
             else:
                 random.shuffle(self.cards)
 
-    def throw_card(self, card):
-        self.cards_thrown.append(card)
-
+    def throw_card(self, cards):
+        self.cards_thrown += cards
+        
 
 # Example usage:
 game = Game()
