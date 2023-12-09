@@ -6,6 +6,7 @@ class Game:
     def __init__(self):
         self.cards = self.initialize_deck()
         self.lucky_card = self.get_card()
+        self.cards_thrown = []
 
     @staticmethod
     def initialize_deck():
@@ -18,14 +19,18 @@ class Game:
         random.shuffle(start_deck)
         return start_deck
 
-    def get_card(self):
-        card = self.cards[-1]
-        self.cards[:] = self.cards[0:-1]
-        return card
+    def get_card(self, take_from_stack=True):
+        if take_from_stack == False:
+            last_thrown = self.cards_thrown[-1]
+            return last_thrown
+        else:
+            card = self.cards[-1]
+            self.cards[:] = self.cards[:-1]
+            return card
 
-    def thrown_card(self, card):
-        cards_thrown = []
-        new_cards_thrown = cards_thrown + card
+    def throw_card(self, card):
+        self.cards_thrown.append(card)
+
 
 # Example usage:
 game = Game()
