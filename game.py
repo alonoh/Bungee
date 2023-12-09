@@ -17,9 +17,9 @@ class Game:
         return start_deck
 
 
+print("bbb")
+
 # Example usage:
 game = Game()
 
-
 print(game.cards)
-
